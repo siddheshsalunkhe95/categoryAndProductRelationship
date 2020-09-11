@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Edit Page</title>
+</head>
+
+<body>
+    <h2>UPDATE PRODUCT MASTER</h2>
+
+    <form action="/update/" method="post">
+        <input type="hidden" name="id" value="<%= records._id %>">
+
+        <input type="text" name="CategoryId" placeholder="Enter Category Id" value="<%= records.CategoryId%>">
+        <input type="text" name="CategoryName" placeholder="Enter Category Name" value="<%= records.CategoryName %>">
+
+        <input type="submit" name="submit" value="submit">
+    </form>
+</body>
+
+</html>

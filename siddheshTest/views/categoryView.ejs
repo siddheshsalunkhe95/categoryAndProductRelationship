@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <!-- <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" /> -->
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+
+      <div class="">
+        <div class="">
+          <h2><%= title %></h2>
+        </div>
+
+        <hr>
+        <!--
+          FORM STARTS
+        -->
+        <div class="">
+          <form action="/" id="" class="" method="post" autocomplete="off">
+            <input type="number" min="1" name="CategoryId" placeholder="Enter Category Id" required>
+            <input type="text" name="CategoryName" placeholder="Enter Category Name" required>
+            <input type="submit" name="submit" value="submit">
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <hr>
+  <h5><strong>Category Master Table</strong></h5>
+
+  <table class="table table-striped" id="categoryMasterTable">
+    <thead>
+      <tr>
+        <th>Category Id</th>
+        <th>Category Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if(records.length > 0) { %>
+      <% for(var i = 0; i < records.length; i++) { %>
+      <tr>
+        <td><%= records[i].CategoryId %></td>
+        <td><%= records[i].CategoryName %></td>
+        <td>
+          <a class="btn btn-primary btn-xs" href="/edit/<%= records[i]._id %>">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a class="btn btn-danger btn-xs" href="/delete/<%= records[i]._id %>">
+            <i class="fa fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+      <% }  }else{ %>
+      <tr>
+        <td colspan="3">No Record Found</td>
+      </tr>
+      <% } %>
+    </tbody>
+
+  </table>
+
+</body>
+
+</html>

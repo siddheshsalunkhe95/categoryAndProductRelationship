@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+    <!-- <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" /> -->
+    <!-- <script src="https://ajax.googleapis.com//ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="">
+
+                <div class="">
+                    <div class="">
+                        <h2><%= title %></h2>
+                    </div>
+                </div>
+
+                <hr>
+                <!--
+                    FORM STARTS
+                -->
+                <div class="">
+                    <form action="/product/" id="" class="" method="post" autocomplete="off">
+
+                        <input type="number" name="ProductId" placeholder="Enter Product Id">
+                        <input type="text" name="ProductName" placeholder="Enter Product Name">
+
+                        <label for="">Select Category</label>
+                        <select name="CategoryId" id="CategoryId">
+                            <% for(var i =0; i < category.length; i++) { %>
+                            <option value="<%= category[i].CategoryId %>"><%= category[i].CategoryName %></option>
+                            <% } %>
+                        </select>
+
+                        <!-- <input type="text" name="CategoryName" placeholder="Enter Product Name"> -->
+
+                        <input type="submit" name="submit" value="submit">
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <hr>
+    <h5><strong>Product Master Table</strong></h5>
+
+    <table class="table table-striped" id="productMasterTable">
+        <thead>
+            <tr>
+                <th>Product Id</th>
+                <th>Product Name</th>
+                <th>Category Id</th>
+                <th>Category Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% if(records.length > 0) { %>
+            <% for(var i = 0; i < records.length; i++) { %>
+            <tr>
+                <td><%= records[i].ProductId %></td>
+                <td><%= records[i].ProductName %></td>
+                <td><%= records[i].CategoryId %></td>
+                <td><% if(records[i].category.length > 0) { %> <%= records[i].category[0].CategoryName%> <% } %></td>
+                <td>
+                    <a class="btn btn-primary btn-xs" href="/product/edit/<%= records[i]._id %>">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a class="btn btn-danger btn-xs" href="/product/delete/<%= records[i]._id %>">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            <% }  }else{ %>
+            <tr>
+                <td colspan="5">No Record Found</td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+
+    <%- include('pagination.ejs',{count:count,limit:limit,x:x,urlPrefix:"", url:"product"}) %>
+
+    <script src="/javascripts/main.js"></script>
+</body>
+
+</html>

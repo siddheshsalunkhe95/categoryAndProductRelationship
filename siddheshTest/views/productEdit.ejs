@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>UPDATE PRODUCT MASTER</h2>
+
+    <form action="/product/update/" method="post">
+        <input type="hidden" name="id" value="<%= records._id %>">
+
+        <input type="text" name="ProductId" placeholder="Enter Product Id" value="<%= records.ProductId %>">
+        <input type="text" name="ProductName" placeholder="Enter Product Name" value="<%= records.ProductName%>">
+        <!-- <input type="text" name="CategoryId" placeholder="Enter Category Id" value="<%= records.CategoryId%>"> -->
+
+        <select name="CategoryId" id="CategoryId">
+            <% for(var i =0; i < category.length; i++) { %>
+            <option <% if(records.CategoryId===category[i].CategoryId) { %>selected="selected" <% } %>
+                value="<%= category[i].CategoryId %>"><%= category[i].CategoryName %></option>
+            <% } %>
+        </select>
+
+        <input type="submit" name="submit" value="submit">
+    </form>
+</body>
+
+</html>
